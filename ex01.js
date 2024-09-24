@@ -6,8 +6,18 @@ Instruction
 Create a function named sumLargestNumbers that will receive an array of numbers and return the sum of the two largest numbers in that array.
 */
 
+// forEach
+
 const sumLargestNumbers = function (data) {
   // Put your solution here
+  let sum = 0;
+  const sortData = data.sort((a, b) => b - a);
+  sortData.forEach((element, index) => {
+    if(index < 2) {
+      sum = sum + element
+    }
+  });
+  return sum;
 };
 
 console.log(sumLargestNumbers([1, 10])); // 11
