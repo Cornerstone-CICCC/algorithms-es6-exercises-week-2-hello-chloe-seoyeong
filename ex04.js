@@ -10,7 +10,7 @@ Create a function named instructorWithLongestName that will receive an array of 
 const instructorWithLongestName = function (instructors) {
   // Put your solution here
   let longest;
-  const longestInstructor = instructors.forEach(instructor => {
+  instructors.forEach(instructor => {
     if (longest == undefined || Object.keys(instructor.name).length > Object.keys(longest.name).length) {
       longest = instructor;
     } 
