@@ -7,8 +7,22 @@ Create a function named numberOfVowels that will receive a string and return the
 
 */
 
+// filter
+
 const numberOfVowels = function (data) {
   // Put your solution here
+  const splitWord = data.split('');
+  const vowels = ['a', 'e', 'i', 'o', 'u'];
+
+  const countVowels = splitWord.filter((vowel) => {
+    for(let i = 0; i < vowels.length; i++) {
+      if (vowel === vowels[i]) {
+        return true;
+      }
+    }
+  })
+
+  return countVowels.length;
 };
 
 console.log(numberOfVowels("orange")); // 3
