@@ -8,8 +8,21 @@ Instruction
 Create a function named repeatNumbers that will return a string with each of the given values repeated the appropriate number of times, if there are multiple sets of values each set should be separated by a comma. If there is only one set of values then you should omit the comma.
 */
 
+// map
+
 const repeatNumbers = function (data) {
   // Put your solution here
+  let repeatResult = "";
+  data.map((numArray, index) => {  
+    for (let i = 0; i < numArray[1]; i++) {
+      repeatResult += `${numArray[0]}`;
+      if(i === (numArray[1] - 1) && index !== (data.length - 1)) {
+        repeatResult += `, `
+      }
+    }
+  })
+
+  return repeatResult;
 };
 
 console.log(repeatNumbers([[1, 10]])); // 1111111111
