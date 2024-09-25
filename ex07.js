@@ -8,8 +8,29 @@ Note
 Not sure where to get started? It might be useful to start by creating a variable to keep track of how many dirty samples we find as we loop through the array of samples. We can increment or add to this number using the ++ operator. Once you know how many dirty samples there are, we just need to do some simple math to determine if it exceeds the threshold.
 */
 
+//reduce
+
 const checkAir = function (samples, threshold) {
   // Code here!
+  let airCondition;
+
+  const dirtyCheck = samples.reduce((air, current) => {
+    if(current === "dirty") {
+      return air = air + 1;
+    } else {
+      return air;
+    }
+  }, 0)
+
+  const howDirty = dirtyCheck/samples.length;
+  
+  if(howDirty < threshold) {
+    airCondition = "Clean"
+  } else  {
+    airCondition = "Polluted";
+  }
+
+  return airCondition;
 };
 
 console.log(
