@@ -19,9 +19,38 @@ Note
 Note: There may be multiple available spots for a particular vehicle. It does not matter which spot your function chooses, as long as the spot is available. And if there are no available spots, remember to return false.
 */
 
+//forEach
+
 const whereCanIPark = function (spots, vehicle) {
   // Code here!
+  let vType = vehicleType(vehicle);
+  let spotXY = false;
+
+  spots.forEach((spotY, indexY) => {
+    spotY.filter((spotX, indexX) => {
+      let i = 0;
+      while(i < vType.length && spotXY == false) {
+        if(spotX === vType[i]) {
+          return spotXY = [indexX, indexY];
+        }
+        i++;
+      }
+    })
+  });
+
+  return spotXY;
 };
+
+const vehicleType = function (vehicle) {
+  switch (vehicle) {
+    case "regular":
+      return ["R"];
+    case "small":
+      return ["R", "S"];
+    case "motorcycle":
+      return ["R", "S", "M"];
+  }
+}
 
 console.log(
   whereCanIPark(
