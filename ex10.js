@@ -9,7 +9,24 @@ Create a function named multiplicationTable that receives a number maxValue as i
 
 const multiplicationTable = function (maxValue) {
   // Your code here
+  const maxValueArray = makeArray(maxValue);
+  
+  for(let i = 1; i <= maxValue; i++) {
+    let multiply = [];
+    maxValueArray.forEach(value => {
+      multiply.push(i * value);
+    })
+    console.log(multiply.join(" "));
+  }
 };
+
+const makeArray = function (value) {
+  let valueArray = [];
+  for (let i = 0; i < value; i++) {
+    valueArray.push(i+1);
+  }
+  return valueArray;
+}
 
 console.log(multiplicationTable(1));
 // 1
