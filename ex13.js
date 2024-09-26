@@ -10,7 +10,40 @@ Create a function named talkingCalendar that takes in a date string with the for
 
 const talkingCalendar = function (date) {
   // Your code here
+  const dateArray = date.split("/");
+  const monthText = changeMonth(dateArray[1]);
+  const dayText = changeDay(dateArray[2]);
+
+  return `${monthText} ${dayText}, ${dateArray[0]}`;
 };
+
+const changeMonth = function (month) {
+  month = month - 0;
+  const monthStrings = ["January", "Februrary", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
+  const monthText = monthStrings.filter( (monthString, index) => {
+    if (month === index + 1) {
+      return true;
+    }
+  })
+  
+  return monthText;
+}
+
+const changeDay = function (day) {
+  let dayText = null;
+  day = day - 0;
+  if (day === 1 || day === 11 || day === 21 || day === 31) {
+    dayText = day + "st";
+  } else if (day === 2 || day === 12 || day === 22) {
+    dayText = day + "nd";
+  } else if (day === 3 || day === 13 || day === 23) {
+    dayText = day + "rd";
+  } else {
+    dayText = day + "th";
+  }
+
+  return dayText;
+}
 
 console.log(talkingCalendar("2017/12/02")); // December 2nd, 2017
 console.log(talkingCalendar("2007/11/11")); // November 11th, 2007
