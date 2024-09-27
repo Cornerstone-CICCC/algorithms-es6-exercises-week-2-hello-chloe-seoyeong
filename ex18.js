@@ -23,8 +23,23 @@ Create a function named squareCode that will receive a message, and return the s
 */
 
 const squareCode = function (message) {
-  // Put your solution here
+  // Put your solution here 
+  const noSpaceMessage = message.split(' ').join("");
+  const square = Math.ceil(Math.sqrt(noSpaceMessage.length));
+  const messageArray = noSpaceMessage.split('');
+
+  const codeArray = messageArray.reduce((arr, current, index) => {
+    const remain = index%square;
+    arr[remain] = (arr[remain] || "") + current;
+
+    return arr;
+  }, [])
+
+  const code = codeArray.join(" ");
+
+  return code;
 };
+
 
 console.log(squareCode("chill out")); // clu hlt io
 console.log(squareCode("feed the dog")); // fto ehg ee dd
