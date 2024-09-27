@@ -23,7 +23,21 @@ Create a function named urlDecode that will receive a URL encoded string, and re
 
 const urlDecode = function (text) {
   // Put your solution here
+  const urlText = text;
+  const splitTexts = urlText.split("&");
+  const urlObject = {};
+
+  splitTexts.forEach((splitText) => {    
+    const urls = splitText.split("=");
+    const urlKey = urls[0];
+    const urlValue = urls[1].split("%20").join(" ");
+
+    urlObject[urlKey] = urlValue;
+  });
+
+  return urlObject;
 };
+
 
 console.log(urlDecode("duck=rubber")); //{duck: "rubber"}
 console.log(urlDecode("city=Vancouver&weather=lots%20of%20rain")); // {city: "Vancouver", weather: "lots of rain"}
