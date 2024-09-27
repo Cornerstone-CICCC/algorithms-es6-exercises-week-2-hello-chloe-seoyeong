@@ -10,6 +10,19 @@ Create a function named organizeInstructors that will receive an array of instru
 
 const organizeInstructors = function (instructors) {
   // Put your solution here
+  // const courseObj;
+
+  const course = instructors.reduce((obj, current) => {
+    if(obj[current.course] === undefined) {
+      obj[current.course] = [current.name];
+    } else {
+      obj[current.course].push(current.name);
+    }
+    
+    return obj;
+  }, {});
+
+  console.log(course)
 };
 
 console.log(
