@@ -11,11 +11,11 @@ Create a function named calculateChange that takes in a total amount of a bill a
 
 Valid denominations are as follows:
 
-Twenty dollars
-Ten dollars
-Five dollars
-Two dollars
-One dollar
+Twenty dollars = 2000
+Ten dollars = 1000
+Five dollars = 500
+Two dollars = 200
+One dollar = 100
 Quarter (25¢)
 Dime (10¢)
 Nickel (5¢)
@@ -24,7 +24,56 @@ Penny (1¢)
 
 const calculateChange = function (total, cash) {
   // Your code here
+  const change = cash - total;
+  const denominations = [2000, 1000, 500, 200, 100, 25, 10, 5, 1];
+  
+  const changeObject  = checkChange(change, denominations);
+
+  return changeObject;
 };
+
+const checkChange = function (cash, denominations) {
+  let change = cash;
+
+  const changeObject = denominations.reduce((obj, current) => {
+    const changeKey = changeText(current);
+
+    if (change/current < 1) {
+      return obj;
+    } else if (change/current >= 1) {
+      let count = Math.floor(change/current);
+      change = change%current; 
+      obj[changeKey] = count;
+
+      return obj;
+    }
+  },{})
+
+  return changeObject;
+}
+
+const changeText = function (num) {
+  switch (num) {
+    case 20000:
+      return "twentyDollar";
+    case 10000:
+      return "tenDollar";
+    case 500:
+      return "fiveDollar";
+    case 200: 
+      return "twoDollar";
+    case 100:
+      return "oneDollar";
+    case 25:
+      return "quater";
+    case 10:
+      return "dime";
+    case 5:
+      return "nickel";
+    case 1:
+      return "penny";
+  }
+}
 
 console.log(calculateChange(1787, 2000)); // { twoDollar: 1, dime: 1, penny: 3 }
 console.log(calculateChange(2623, 4000)); // { tenDollar: 1, twoDollar: 1, oneDollar: 1, quarter: 3, penny: 2 }
