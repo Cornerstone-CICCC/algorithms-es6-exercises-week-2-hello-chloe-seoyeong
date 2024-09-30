@@ -22,7 +22,37 @@ This one is a doozy! We might want to start by creating a helper function called
 
 const chooseRecipe = function (bakeryA, bakeryB, recipes) {
   // Code here!
+
+  let checkStock;
+  checkStock = ingredientCheck(bakeryA, recipes);
+  checkStock = ingredientCheck(bakeryB, checkStock);
+
+  return checkStock[0].name;
 };
+
+const ingredientCheck = function (bakeryStocks, recipes) {
+
+  const ingredientsObj = recipes.filter((recipe) => {
+    recipe.canCook = false;
+    bakeryStocks.forEach(element => {
+      recipe.ingredients.map(ingredient => {
+        if (!recipe.canCook) {
+          if (element === ingredient) {
+            recipe.canCook = true;
+          } else {
+            recipe.canCook = false;
+          }
+        }
+      })
+    });
+
+    return recipe.canCook === true;
+  })
+
+  // console.log(ingredientsObj)
+
+  return ingredientsObj;
+}
 
 let bakeryA = ["saffron", "eggs", "tomato paste", "coconut", "custard"];
 let bakeryB = ["milk", "butter", "cream cheese"];
